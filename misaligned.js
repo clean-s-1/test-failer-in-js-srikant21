@@ -3,11 +3,17 @@ const majorColors = ["White", "Red", "Black", "Yellow", "Violet"];
 const minorColors = ["Blue", "Orange", "Green", "Brown", "Slate"];
 
 function print_color_map(majorColors,minorColors) {
-    for (let i = 0; i < majorColors.length; i++) {
-        for (let j = 0; j < minorColors.length; j++) {
-            console.log(`${i * 5 + j + 1} | ${majorColors[i]} | ${minorColors[j]}`);
+    let colorIndex;
+    for (let majCount = 0; majCount< majorColors.length; majCount++) {
+        for (let minCount = 1; minCount < minorColors.length; minCount++) {
+            colorIndex = print_color_index(majCount,minCount);
+            console.log(colorIndex +` ${majorColors[majCount]} | ${minorColors[minCount]}`);
         }
     }    
+}
+
+function print_color_index(majColorCount,minColorCount){
+    return majColorCount * 5 + minColorCount + 1 ;
 }
 
 function print_color_length(majorColors,minorColors){

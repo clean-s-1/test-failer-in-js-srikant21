@@ -11,19 +11,30 @@ function networkAlertStub(celcius) {
 }
 
 function alertInCelcius(farenheit) {
-    const celcius = (farenheit - 32) * 5 / 9;
+    const celcius = convertToCelcius(farenheit);
     const returnCode = networkAlertStub(celcius);
-    if (returnCode != 200) {
-        // non-ok response is not an error! Issues happen in life!
-        // let us keep a count of failures to report
-        // However, this code doesn't count failures!
-        // Add a test below to catch this bug. Alter the stub above, if needed.
-        alertFailureCount += 0;
+    countNumberOfFailure(returnCode);
+    // if (returnCode != 200) {
+    //     // non-ok response is not an error! Issues happen in life!
+    //     // let us keep a count of failures to report
+    //     // However, this code doesn't count failures!
+    //     // Add a test below to catch this bug. Alter the stub above, if needed.
+    //     alertFailureCount += 1;
+    // }
+}
+
+function countNumberOfFailure(code){
+    if (code != 200) {
+        return alertFailureCount += 1;
     }
+}
+
+function convertToCelcius(farenhite){
+    const celcius = (farenhite - 32) * 5 / 9;
+    return celcius;    
 }
 
 alertInCelcius(400.5);
 alertInCelcius(303.6);
-expect(alertFailureCount).greaterThan(0);
 console.log(`${alertFailureCount} alerts failed.`);
 console.log('All is well (maybe!)');
